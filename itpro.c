@@ -24,10 +24,12 @@ void itemQuantitySummationByCategory();
 void itemExpiryTracking();
 void salesData();
 
-int main() {
+int main() 
+{
     int input;
 
-    do {
+    do 
+    {
         printf("\n\t** USER PANEL **\n\n");
         printf("(1) Search item\n(2) Add item\n(3) Update item info\n(4) Delete item\n(5) Display inventory\n\n");
         printf("* Run Search for :\n");
@@ -37,7 +39,8 @@ int main() {
 
         scanf("%d", &input);
 
-        switch (input) {
+        switch (input) 
+        {
             case 1:
                 searchitem();
                 break;
@@ -85,7 +88,8 @@ int main() {
     return 0;
 }
 
-void additem() {
+void additem() 
+{
     int j, n;
     Item* it;
 
@@ -93,25 +97,29 @@ void additem() {
     scanf("%d", &n);
 
     it = (Item*)malloc(n * sizeof(Item));
-    if (it == NULL) {
+    
+    if (it == NULL) 
+    {
         printf("Memory allocation failed.\n");
         exit(1);
     }
 
     FILE* fp = fopen("inventory.txt", "a");
-    if (fp == NULL) {
+    if (fp == NULL) 
+    {
         printf("Error opening file for writing.\n");
         exit(1);
     }
 
-    for (j = 0; j < n; j++) {
+    for (j = 0; j < n; j++) 
+    {
         printf("\nEnter item details:\n");
         printf("Item Number: ");
         scanf("%d", &it[j].item_no);
         printf("Item Name: ");
         scanf("%29s", it[j].item_name);
         printf("Description: ");
-        scanf("%299s", it[j].description);
+        scanf(" %[^\n]s", it[j].description);
         printf("Price: ");
         scanf("%f", &it[j].price);
         printf("Quantity in stock: ");
@@ -129,22 +137,27 @@ void additem() {
     free(it);
 }
 
-void searchitem() {
+void searchitem() 
+
+{
     FILE* fp = fopen("inventory.txt", "r");
     int choice;
     printf("Search by:\n1. Item Number\n2. Item Name\nEnter your choice: ");
     scanf("%d", &choice);
     int search_no;
     char search_name[30];
+    
     if (choice == 1)
     {
         printf("Enter item number to search: ");
         scanf("%d", &search_no);
-    } else
+    } 
+    else
     {
         printf("Enter item name to search: ");
         scanf("%29s", search_name);
     }
+    
     int found = 0;
     Item currentItem;
 
@@ -167,15 +180,18 @@ void searchitem() {
     fclose(fp);
 }
 
-void updateitem() {
+void updateitem() 
+{
     
 }
 
-void deleteitem() {
+void deleteitem() 
+{
     
 }
 
-void displayitem() {
+void displayitem() 
+{
     FILE* fp = fopen("inventory.txt", "r");
     Item currentItem;
     while (fscanf(fp, "%d %s %s %f %d %s %s", &currentItem.item_no, currentItem.item_name, currentItem.description,&currentItem.price, &currentItem.quant_instock, currentItem.expdate, currentItem.category) != EOF)
@@ -183,7 +199,7 @@ void displayitem() {
         printf("\n");
         printf("Item Number: %d\n", currentItem.item_no);
         printf("Item Name: %s\n", currentItem.item_name);
-        printf("Description: %s\n", currentItem.description);
+        printf("Description: %[^\n]s\n", currentItem.description);
         printf("Price: %.2f\n", currentItem.price);
         printf("Quantity in stock: %d\n", currentItem.quant_instock);
         printf("Expiry Date: %s\n", currentItem.expdate);
@@ -193,26 +209,32 @@ void displayitem() {
     fclose(fp);
 }
 
-void surplusQuantityIdentification() {
+void surplusQuantityIdentification() 
+{
     
 }
 
-void lowQuantityIdentification() {
+void lowQuantityIdentification() 
+{
     
 }
 
-void totalInventoryValueCalculation() {
+void totalInventoryValueCalculation() 
+{
     
 }
 
-void itemQuantitySummationByCategory() {
+void itemQuantitySummationByCategory() 
+{
     
 }
 
-void itemExpiryTracking() {
+void itemExpiryTracking()
+{
     
 }
 
-void salesData() {
+void salesData() 
+{
     
 }
